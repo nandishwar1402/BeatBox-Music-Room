@@ -1,6 +1,6 @@
 # BeatBox Music Room
 
-**Backend Development Fundamentals – Group Project**
+**Backend Development Fundamentals – group assignment
 deployed link : https://beatbox-music-room-x3e6.onrender.com
 
 ## 1. Project Overview
