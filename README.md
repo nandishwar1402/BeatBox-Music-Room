@@ -95,6 +95,8 @@ This table stores musical instrument details.
 - `id` – Unique ID of the instrument.
 - `name` – Name of the instrument.
 - `family` – Category of the instrument.
+<img width="1917" height="1075" alt="Screenshot 2026-11-14 122227" src="https://github.com/user-attachments/assets/145f73b5-c205-486c-a6ca-78308633853d" />
+
 
 ### 6.3 Loans Table
 
@@ -113,12 +115,17 @@ The three tables are connected using foreign keys.
 - One musician can have multiple loan records.
 - One instrument can appear in multiple loan records over time.
 - Each loan connects a musician with an instrument.
+- <img width="1917" height="1078" alt="Screenshot 2026-11-14 122237" src="https://github.com/user-attachments/assets/1090de7c-2dff-4ddf-87f8-4b5ad3b9dcca" />
+
 
 We used `musician_id` and `instrument_id` in the loans table to connect the related records.
 
 ## 7. API Development
 
 We developed REST APIs using Express.js.
+<img width="1907" height="985" alt="Screenshot 2026-11-15 130128" src="https://github.com/user-attachments/assets/e7ef77e4-f904-4cbd-ac33-cfd5e32065ad" />
+<img width="1917" height="973" alt="Screenshot 2026-11-15 133542" src="https://github.com/user-attachments/assets/fa7fd7c0-5037-40af-ad10-9db3882a6e87" />
+
 
 **Base URL:**
 
@@ -597,4 +604,4 @@ This shows the main parts of our project. The exact files and folders are availa
 **Subject:** Backend Development Fundamentals  
 **Repository:** https://github.com/nandishwar1402/BeatBox-Music-Room  
 **Team:** 5 members + team collaboration
-<img width="1917" height="1078" alt="Screenshot 2026-11-14 122247" src="https://github.com/user-attachments/assets/a5462958-775b-47e5-98a9-c00b58a1aae9" />
+
