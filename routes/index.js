@@ -1,7 +1,11 @@
-const express = require("express");
 
+const express = require("express");
 const router = express.Router();
 
+const instrumentRoutes = require("./instruments");
+const loanRoutes = require("./loans");
+
+// API home route
 router.get("/", (req, res) => {
     res.status(200).json({
         success: true,
@@ -13,5 +17,11 @@ router.get("/", (req, res) => {
         }
     });
 });
+
+// Instrument APIs
+router.use("/instruments", instrumentRoutes);
+
+// Loans JOIN API
+router.use("/loans", loanRoutes);
 
 module.exports = router;
