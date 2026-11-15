@@ -1,144 +1,137 @@
 # BeatBox Music Room
-## Backend Development Fundamentals – Group Project
 
----
+**Backend Development Fundamentals – Group Project**
 
 ## 1. Project Overview
 
-**BeatBox Music Room** is a backend-based music instrument management system developed using Node.js, Express.js, and SQLite.
+BeatBox Music Room is a backend project developed using Node.js, Express.js and SQLite.
 
-The main purpose of this project is to manage musical instruments, musicians, and instrument loans through RESTful APIs. The application allows users to view available instruments, retrieve individual instrument details, add new instruments, update existing instrument information, and delete instruments.
+The main idea of this project is to manage musical instruments, musicians and instrument borrowing details. Users can view instruments, add new instruments, update existing details and delete records through APIs.
 
-It also provides a loan management feature that connects musicians with the instruments they borrow. The system retrieves related information from multiple database tables using SQL JOIN operations.
+We also created a loans feature to show which musician borrowed which instrument. For this, we used SQL JOIN operations to get information from different database tables.
 
-In addition to basic CRUD operations, the project includes input validation and a smart search feature. Users can search for instruments using their names or instrument families. The search works regardless of uppercase or lowercase letters and returns an appropriate response when no matching records are found.
+Apart from CRUD operations, we added input validation and a smart search feature. The search works with both uppercase and lowercase letters and also handles cases where no matching instrument is found.
 
-The project demonstrates how a backend application can communicate with a relational database and provide structured data through REST APIs.
+Through this project, we got practical experience in backend development, database operations, API testing and GitHub collaboration.
 
 ## 2. Problem Statement
 
-Managing musical instruments and their borrowing records manually can become difficult when the number of instruments and musicians increases.
+Managing musical instruments and their borrowing details manually can become difficult when there are many instruments and musicians.
 
-A music room needs a simple system to:
+A music room needs a system to:
 
-- Maintain details of different musical instruments.
-- Store information about musicians.
-- Track which instruments are borrowed by musicians.
-- Retrieve instrument information whenever required.
-- Update instrument records when details change.
-- Remove unnecessary instrument records.
-- Search instruments quickly using their names or categories.
-- Prevent incomplete or invalid information from entering the database.
-- Display loan details along with the related musician and instrument names.
+- Store musician details.
+- Maintain instrument information.
+- Track borrowed instruments.
+- View instrument details whenever needed.
+- Update or delete instrument records.
+- Search instruments by name or family.
+- Prevent incomplete information from being saved.
+- Display loan details with musician and instrument names.
 
-To address these requirements, BeatBox Music Room provides a backend API system supported by an SQLite relational database.
+To solve these problems, we developed BeatBox Music Room using Node.js, Express.js and an SQLite database.
 
 ## 3. Project Objectives
 
-The main objectives are:
+The main objectives of our project are:
 
-1. Develop a backend application using Node.js and Express.js.
-2. Create and manage an SQLite database.
-3. Maintain three related database tables.
-4. Implement RESTful APIs for instrument management.
-5. Perform Create, Read, Update, and Delete operations.
-6. Retrieve loan details using SQL JOIN operations.
-7. Implement input validation for instrument data.
-8. Provide case-insensitive smart search.
-9. Handle missing records and invalid requests with meaningful responses.
-10. Test API functionality using Postman.
-11. Document the project, API endpoints, and testing results.
+- To develop a backend application using Node.js and Express.js.
+- To create an SQLite database with related tables.
+- To manage musicians, instruments and loans.
+- To implement CRUD operations for instruments.
+- To retrieve loan details using SQL JOIN.
+- To add validation for instrument information.
+- To implement case-insensitive smart search.
+- To handle invalid requests and missing records.
+- To test the APIs using Postman.
+- To maintain project code using Git and GitHub.
 
 ## 4. Technologies Used
 
 | Technology | Purpose |
 |---|---|
-| Node.js | JavaScript runtime for backend development |
-| Express.js | Framework for creating REST APIs |
-| SQLite | Relational database management |
-| JavaScript | Application logic and API implementation |
-| SQL | Database operations and JOIN queries |
-| Postman | API testing and documentation |
-| Git | Version control |
-| GitHub | Source code hosting and team collaboration |
+| Node.js | Running JavaScript on the server |
+| Express.js | Creating backend APIs |
+| SQLite | Storing project data |
+| JavaScript | Writing application logic |
+| SQL | Performing database operations |
+| Postman | Testing API requests |
+| Git | Tracking code changes |
+| GitHub | Sharing and managing team code |
 
 ## 5. System Architecture
 
-The application follows a simple backend architecture.
+Our application works in the following order:
 
 **Client / Postman → Express Server → API Routes → Database Operations → SQLite Database**
 
-### Architecture Explanation
+### How it works
 
-1. The client sends an HTTP request to the application.
-2. The Express server receives the request.
-3. The appropriate route handles the requested operation.
-4. Validation and search logic are applied where required.
-5. The application communicates with the SQLite database.
-6. The database returns the requested records or operation result.
-7. The server sends a JSON response to the client.
+1. The client sends a request to the server.
+2. Express receives the request.
+3. The required API route handles it.
+4. Validation or search logic is applied when needed.
+5. The application communicates with SQLite.
+6. SQLite returns the required data or operation result.
+7. The server sends the response in JSON format.
 
-This structure separates the responsibilities of the server, routes, database, and validation logic.
+We divided the application into different parts to make the code easier to manage and understand.
 
 ## 6. Database Design
 
-The project uses an SQLite database with three related tables.
+We used SQLite and created three main tables for our project.
 
 ### 6.1 Musicians Table
 
-Stores information about musicians.
+This table stores musician details.
 
-Main field:
-
-- `id` – Unique identifier for each musician.
+- `id` – Unique ID of the musician.
 - `name` – Name of the musician.
 
 ### 6.2 Instruments Table
 
-Stores information about musical instruments.
+This table stores musical instrument details.
 
-Main fields:
-
-- `id` – Unique identifier for each instrument.
+- `id` – Unique ID of the instrument.
 - `name` – Name of the instrument.
-- `family` – Instrument category or family.
+- `family` – Category of the instrument.
 
 ### 6.3 Loans Table
 
-Stores information about instruments borrowed by musicians.
+This table stores the borrowing details.
 
-Main fields:
-
-- `id` – Unique identifier for each loan.
-- `musician_id` – References a musician.
-- `instrument_id` – References an instrument.
+- `id` – Unique ID of the loan.
+- `musician_id` – ID of the musician.
+- `instrument_id` – ID of the borrowed instrument.
 - `loan_date` – Date when the instrument was borrowed.
 - `return_date` – Expected return date.
 
 ### 6.4 Relationship Between Tables
 
-The database uses relationships between the three tables:
+The three tables are connected using foreign keys.
 
 - One musician can have multiple loan records.
 - One instrument can appear in multiple loan records over time.
 - Each loan connects a musician with an instrument.
 
-The `musician_id` and `instrument_id` fields in the loans table connect the records using foreign-key relationships.
+We used `musician_id` and `instrument_id` in the loans table to connect the related records.
 
 ## 7. API Development
 
-The application provides RESTful endpoints under the following base URL:
+We developed REST APIs using Express.js.
+
+**Base URL:**
 
 `http://localhost:3000/api`
 
 ### 7.1 Instrument APIs
 
-| HTTP Method | Endpoint | Description |
+| Method | Endpoint | Description |
 |---|---|---|
-| GET | `/instruments` | Retrieve all instruments |
-| GET | `/instruments/:id` | Retrieve an instrument by ID |
+| GET | `/instruments` | Get all instruments |
+| GET | `/instruments/:id` | Get an instrument by ID |
 | POST | `/instruments` | Add a new instrument |
-| PUT | `/instruments/:id` | Update an existing instrument |
+| PUT | `/instruments/:id` | Update an instrument |
 | DELETE | `/instruments/:id` | Delete an instrument |
 
 ### 7.2 Retrieve All Instruments
@@ -147,9 +140,9 @@ The application provides RESTful endpoints under the following base URL:
 
 `GET /api/instruments`
 
-This endpoint retrieves the available instrument records from the database.
+This API displays all the instruments available in the database.
 
-Example response:
+**Example response:**
 
 ```json
 {
@@ -176,7 +169,7 @@ Example response:
 
 `GET /api/instruments/1`
 
-This endpoint retrieves the details of a particular instrument using its unique ID.
+This API is used to get the details of a particular instrument using its ID.
 
 ### 7.4 Add a New Instrument
 
@@ -184,7 +177,7 @@ This endpoint retrieves the details of a particular instrument using its unique 
 
 `POST /api/instruments`
 
-Example request body:
+**Request body:**
 
 ```json
 {
@@ -193,7 +186,7 @@ Example request body:
 }
 ```
 
-This endpoint inserts a new instrument record into the database.
+This API adds a new instrument to the database.
 
 ### 7.5 Update an Instrument
 
@@ -201,7 +194,7 @@ This endpoint inserts a new instrument record into the database.
 
 `PUT /api/instruments/1`
 
-Example request body:
+**Request body:**
 
 ```json
 {
@@ -210,7 +203,7 @@ Example request body:
 }
 ```
 
-This endpoint updates the existing instrument information using its ID.
+This API updates the details of an existing instrument.
 
 ### 7.6 Delete an Instrument
 
@@ -218,35 +211,35 @@ This endpoint updates the existing instrument information using its ID.
 
 `DELETE /api/instruments/1`
 
-This endpoint deletes an instrument record using its ID.
+This API deletes the instrument record using its ID.
 
 ## 8. Smart Search Functionality
 
-One of the important features of the project is smart instrument search.
+We added a smart search feature to make finding instruments easier.
 
-Users can search for instruments by their name or family using the `q` query parameter.
+Users can search using the instrument name or family by passing the `q` parameter.
 
-**Search by lowercase text:**
+**Search using lowercase:**
 
 `GET /api/instruments?q=guitar`
 
-**Search by uppercase text:**
+**Search using uppercase:**
 
 `GET /api/instruments?q=GUITAR`
 
-The search is case-insensitive. It can match the search text against both instrument names and instrument families.
+Both searches return the matching instrument because our search is case-insensitive.
 
 ### Search Behaviour
 
-| Search Query | Expected Behaviour |
+| Search Query | Result |
 |---|---|
-| `guitar` | Returns matching instrument records |
-| `GUITAR` | Returns the same matching records |
-| `zzz` | Returns an empty data array |
+| `guitar` | Returns matching instruments |
+| `GUITAR` | Returns the same matching instruments |
+| `zzz` | Returns an empty result |
 
-When no matching instrument is found, the API returns HTTP 200 with a meaningful message.
+When there is no matching instrument, the API returns a message instead of treating it as a server error.
 
-Example response:
+**Example response:**
 
 ```json
 {
@@ -256,17 +249,15 @@ Example response:
 }
 ```
 
-This allows the client to handle unsuccessful searches without treating them as server errors.
+This was one of the special search requirements we checked during the project.
 
 ## 9. Input Validation
 
-Input validation helps maintain correct and meaningful information in the database.
+We added input validation to make sure that required instrument details are provided before saving or updating records.
 
-The application checks the instrument details before adding or updating records.
+For example, the instrument name should not be empty.
 
-For example, an instrument name is required.
-
-Example invalid request:
+**Example invalid request:**
 
 ```json
 {
@@ -275,7 +266,7 @@ Example invalid request:
 }
 ```
 
-Example response:
+**Response:**
 
 ```json
 {
@@ -284,7 +275,7 @@ Example response:
 }
 ```
 
-This prevents an instrument from being added with a missing name and provides a clear message to the user.
+This helps prevent incomplete instrument details from being stored in the database.
 
 ## 10. Loans API and SQL JOIN
 
@@ -292,18 +283,18 @@ This prevents an instrument from being added with a missing name and provides a 
 
 `GET /api/loans`
 
-The loans endpoint retrieves borrowing information along with the related musician and instrument names.
+We created a loans API to display which musician borrowed which instrument.
 
-Instead of returning only the foreign-key IDs, the API uses SQL JOIN operations to combine information from the musicians, instruments, and loans tables.
+The loans table contains musician and instrument IDs. Instead of showing only these IDs, we used SQL JOIN to retrieve the actual musician and instrument names from their respective tables.
 
-The response includes information such as:
+The response includes:
 
 - Musician name
 - Instrument name
 - Loan date
 - Return date
 
-Example response structure:
+**Example response:**
 
 ```json
 {
@@ -320,86 +311,79 @@ Example response structure:
 }
 ```
 
-This makes loan information easier to understand because users can see the actual musician and instrument names instead of only database IDs.
+This makes the loan information easier to read and understand.
 
 ## 11. Postman API Testing
 
-Postman was used to test the API endpoints and verify that the application behaves as expected.
+Postman is used to send API requests and check the responses from our backend.
 
-A Postman collection containing the project API requests was exported and included in the repository.
+We prepared API testing cases for the main features of the project.
 
-### Testing Performed
+### Testing Cases
 
 | No. | Test Case | Expected Result |
 |---|---|---|
-| 1 | Retrieve all instruments | Instrument list returned |
-| 2 | Retrieve instrument by ID | Correct instrument returned |
+| 1 | Get all instruments | Instrument list returned |
+| 2 | Get instrument by ID | Correct instrument returned |
 | 3 | Add a new instrument | New record created |
 | 4 | Update an instrument | Record updated |
 | 5 | Delete an instrument | Record deleted |
-| 6 | Search using lowercase text | Matching records returned |
-| 7 | Search using uppercase text | Same matching records returned |
-| 8 | Search using unmatched text | Empty data with `Nothing found` |
-| 9 | Submit an empty instrument name | Validation error returned |
-| 10 | Retrieve loan records | Musician and instrument details returned |
+| 6 | Lowercase search | Matching records returned |
+| 7 | Uppercase search | Same matching records returned |
+| 8 | Search with `zzz` | Empty result returned |
+| 9 | Submit empty instrument name | Validation error returned |
+| 10 | Get all loans | Musician and instrument details returned |
 
 ### Smart Search Twist Testing
 
-The special search requirements were tested separately:
+We also checked the three special search conditions:
 
-- `?q=guitar` – Successfully returned the matching instrument.
-- `?q=GUITAR` – Successfully returned the same matching instrument.
-- `?q=zzz` – Successfully returned an empty result with the message `Nothing found`.
-
-These tests confirmed that the search functionality handles uppercase and lowercase input and provides a meaningful response when there are no matches.
+- `?q=guitar` – Returns the matching instrument.
+- `?q=GUITAR` – Returns the same matching instrument.
+- `?q=zzz` – Returns an empty result with the message `Nothing found`.
 
 ### Postman Collection
 
-The exported collection is available at:
+The collection file is kept in the following location:
 
 `postman/BeatBox Music Room – Neha Testing.postman_collection.json`
 
-To use it:
+To test the APIs using Postman:
 
 1. Open Postman.
-2. Select Import.
-3. Choose the collection JSON file from the `postman` folder.
-4. Start the BeatBox Music Room server.
-5. Execute the available requests.
-6. Verify the response status, message, and returned data.
+2. Import the collection JSON file.
+3. Start the BeatBox Music Room server.
+4. Send the required API requests.
+5. Check the response status and returned data.
+
+**Note:** The current exported collection still needs the actual API requests to be added and verified.
 
 ## 12. Screenshots and Testing Evidence
 
-The `screenshots` folder contains screenshots captured during API development and testing.
+We have a `screenshots` folder in the repository to keep the project testing evidence.
 
-These screenshots provide evidence of the API requests and their responses.
+The planned testing screenshots cover:
 
-The screenshots cover the testing work, including:
-
-- Retrieving all instruments.
-- Retrieving an individual instrument.
+- Getting all instruments.
+- Getting an instrument by ID.
 - Adding an instrument.
 - Updating an instrument.
 - Deleting an instrument.
-- Testing lowercase smart search.
-- Testing uppercase smart search.
-- Testing the no-match search condition.
-- Checking input validation.
+- Lowercase search.
+- Uppercase search.
+- No-match search.
+- Input validation.
 - Retrieving loan information.
 
-Folder:
+**Folder name:** `screenshots/`
 
-`screenshots/`
-
-The screenshots and exported Postman collection are included in the repository to make the testing process easier to review.
+These screenshots help show how the APIs work and what responses they return. The final submission should contain the actual testing screenshots.
 
 ## 13. How to Run the Project
 
-Follow these steps to run the application locally after the complete project branches have been integrated.
+Follow these steps to run BeatBox Music Room on your system.
 
-### Prerequisites
-
-Install the following:
+### Requirements
 
 - Node.js
 - npm
@@ -424,16 +408,21 @@ cd BeatBox-Music-Room
 npm install
 ```
 
-### Step 4: Initialize and Seed the Database
+### Step 4: Set Up the Database
 
-Run the database setup and sample-data scripts as required:
+Run the database test script:
 
 ```bash
 node database/test-db.js
+```
+
+To insert the sample records into a fresh database, run:
+
+```bash
 node database/seed.js
 ```
 
-Run the seed script only when you need to insert the sample data into a fresh database.
+Run the seed script only when setting up fresh sample data. Do not run it repeatedly if the records already exist.
 
 ### Step 5: Start the Server
 
@@ -441,7 +430,7 @@ Run the seed script only when you need to insert the sample data into a fresh da
 npm start
 ```
 
-Expected server message:
+Expected output:
 
 ```text
 BeatBox Music Room running at http://localhost:3000
@@ -449,128 +438,131 @@ BeatBox Music Room running at http://localhost:3000
 
 ### Step 6: Test the APIs
 
-Open Postman and use the base URL:
+Open Postman and use this base URL:
 
 `http://localhost:3000/api`
 
-You can now test the instrument and loan endpoints.
+You can now test the instrument and loans APIs.
 
 ## 14. Team Contributions
 
-This project was completed through teamwork, with each member responsible for a specific part of the backend application.
+We divided the project into different tasks so that each team member could work on a separate part.
 
 ### Member 1 – H. Nandishwar Reddy
+
 **Responsibility: Server Setup and Main Route Integration**
 
 - Set up the Express.js server.
 - Configured the application entry point.
-- Organized the main API route structure.
-- Integrated the server with the database and API modules.
-- Worked on combining the different team contributions into the application.
+- Organized the main API routes.
+- Connected the server with the database and API modules.
+- Integrated the work submitted by other team members.
 
 ### Member 2 – K. Sai Nihal
+
 **Responsibility: SQLite Database Development**
 
 - Created the SQLite database setup.
-- Designed the musicians table.
-- Designed the instruments table.
-- Designed the loans table.
-- Added sample database records.
+- Created the musicians table.
+- Created the instruments table.
+- Created the loans table.
+- Added sample records.
 - Created database testing and data-viewing scripts.
-- Verified database connectivity and table creation.
+- Checked database connectivity and table creation.
 
 ### Member 3 – G. Rishitha
+
 **Responsibility: Instrument CRUD and Loans API**
 
-- Implemented instrument retrieval functionality.
-- Developed the API to retrieve an instrument by ID.
-- Implemented adding new instruments.
-- Implemented updating instrument details.
-- Implemented deleting instruments.
+- Implemented instrument retrieval.
+- Developed the API to get an instrument by ID.
+- Added new instrument functionality.
+- Implemented instrument update and delete operations.
 - Developed the loans API.
-- Used SQL JOIN operations to retrieve musician and instrument information.
+- Used SQL JOIN to retrieve musician and instrument details.
 
 ### Member 4 – G. Yuvatej
-**Responsibility: Input Validation and Search Functionality**
 
-- Worked on instrument input validation.
-- Added checks for required instrument information.
-- Implemented validation responses.
-- Developed the search functionality.
+**Responsibility: Input Validation and Search**
+
+- Added validation for instrument details.
+- Checked required input fields.
+- Added validation error responses.
+- Developed the instrument search feature.
 - Supported searching by instrument name and family.
-- Worked on case-insensitive search behaviour.
+- Implemented case-insensitive search behaviour.
 
 ### Member 5 – G. Neha
-**Responsibility: Postman API Testing and Documentation**
 
-- Created and exported the Postman API collection.
-- Tested the instrument CRUD operations.
-- Verified the lowercase smart search functionality.
-- Verified the uppercase smart search functionality.
+**Responsibility: Postman Testing and Documentation**
+
+- Worked on the Postman API collection.
+- Prepared API testing cases.
+- Worked on testing the instrument CRUD operations.
+- Checked lowercase and uppercase search.
 - Tested the no-match search condition.
-- Verified the instrument input validation response.
-- Tested the loans JOIN endpoint.
-- Captured screenshots of API requests and responses.
-- Organized the testing screenshots in the repository.
-- Prepared API testing documentation and project README.
+- Checked input validation.
+- Tested the loans JOIN API.
+- Worked on testing screenshots and project documentation.
 
 ### Member 6 – Team Contribution
+
 **Responsibility: Smart Search Twist Verification and Integration**
 
-- Worked together to verify the special search requirements.
-- Checked that uppercase and lowercase queries return the same matching records.
-- Verified the no-match response.
-- Reviewed the integrated behaviour of the application.
+- Worked together to check the special search requirements.
+- Verified lowercase and uppercase search results.
+- Checked the no-match response.
+- Reviewed the integrated project functionality.
 
 ## 15. GitHub Collaboration and Version Control
 
-GitHub was used to manage the project and coordinate the work of different team members.
+We used Git and GitHub to work together on this project.
 
-Each member worked on a separate feature branch so that their changes could be developed independently.
+Each member worked on a separate feature branch for their assigned task. After completing the work, the changes were shared through commits and pull requests.
 
-The team used:
+We used:
 
-- Git branches for separate contributions.
-- Commits to record completed work.
-- Pull requests to submit contributions for review.
-- GitHub to maintain the shared project repository.
+- Git branches to work on separate features.
+- Commits to save our changes.
+- Pull requests to merge completed work.
+- GitHub to maintain the project repository.
 
-This workflow helped the team organize development and integrate different parts of the application.
+After completing the individual tasks, we merged the contributions into the main branch and checked the integrated application.
+
+This helped us understand how multiple developers can work on the same project.
 
 ## 16. Learning Outcomes
 
-Through this project, the team gained practical experience in backend development.
+While developing this project, we learned many things about backend development.
 
-The major learning outcomes include:
+Some of the things we learned are:
 
-1. Understanding how Node.js works in backend applications.
-2. Creating RESTful APIs using Express.js.
-3. Connecting an application to an SQLite database.
-4. Designing relational database tables.
-5. Performing SQL CRUD operations.
-6. Understanding primary keys and foreign keys.
-7. Using SQL JOIN operations to retrieve related information.
-8. Implementing input validation.
-9. Developing case-insensitive search functionality.
-10. Testing APIs using Postman.
-11. Understanding Git branches, commits, and pull requests.
-12. Collaborating with team members on a shared software project.
+- How to use Node.js for backend development.
+- How to create REST APIs using Express.js.
+- How to connect an application with SQLite.
+- How to create and manage database tables.
+- How to perform CRUD operations.
+- How primary keys and foreign keys work.
+- How to retrieve related records using SQL JOIN.
+- How to validate user input.
+- How to implement case-insensitive search.
+- How to test APIs.
+- How to use Git and GitHub.
+- How to work together on a group project.
 
 ## 17. Conclusion
 
-BeatBox Music Room demonstrates the development of a backend application for managing musical instruments, musicians, and loan records.
+BeatBox Music Room helped us understand how a backend application is developed and connected to a database.
 
-The project combines Node.js, Express.js, and SQLite to provide RESTful APIs for instrument management and loan information. It also includes important backend features such as CRUD operations, database relationships, input validation, and smart search.
+We created APIs to manage musical instruments and retrieve loan information. We also implemented CRUD operations, input validation, SQL JOIN and smart search.
 
-Postman was used to test the API functionality, while Git and GitHub supported team collaboration and version control.
+During the project, we worked with Node.js, Express.js, SQLite, SQL, Git and GitHub. We also got experience in dividing tasks, sharing code and integrating different contributions.
 
-Overall, this project provided practical experience in developing, testing, documenting, and integrating a backend application as a team.
-
----
+Overall, this project gave us practical experience in backend development and teamwork.
 
 ## 18. Repository Structure
 
-The main project folders include:
+The main folders and files in our project are:
 
 ```text
 BeatBox-Music-Room/
@@ -597,11 +589,11 @@ BeatBox-Music-Room/
 └── .gitignore
 ```
 
-*Note: This is a high-level structure showing the main project areas. The exact files and folders may vary as the team integrates its branches.*
+This shows the main parts of our project. The exact files and folders are available in the GitHub repository.
 
 ---
 
 **Project:** BeatBox Music Room  
 **Subject:** Backend Development Fundamentals  
 **Repository:** https://github.com/nandishwar1402/BeatBox-Music-Room  
-**Documentation and Postman Testing Contribution:** G. Neha
+**Team:** 5 members + team collaboration
