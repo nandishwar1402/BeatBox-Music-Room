@@ -597,3 +597,4 @@ This shows the main parts of our project. The exact files and folders are availa
 **Subject:** Backend Development Fundamentals  
 **Repository:** https://github.com/nandishwar1402/BeatBox-Music-Room  
 **Team:** 5 members + team collaboration
+<img width="1917" height="1078" alt="Screenshot 2026-11-14 122247" src="https://github.com/user-attachments/assets/a5462958-775b-47e5-98a9-c00b58a1aae9" />
